@@ -1,0 +1,41 @@
+Private Sub CommandButton1_Click()
+
+Dim i As Integer
+Dim j As Integer
+Dim k As Integer
+Dim l As Integer
+Dim LastColumn As Integer
+j = 2
+
+l = Cells(2, 3).Value
+
+LastColumn = ws.Cells(1, Columns.Count).End(xlToLeft).Column
+
+For i = 2 To LastColumn
+    If Cells(i, 1).Value <> Cells(i + 1, 1).Value Then
+        Cells(j, 11).Value = Cells(i, 1).Value
+        
+        k = Cells(i, 6).Value
+        Cells(j, 12).Value = k - l
+        Cells(j, 13).Value = (k - l) / l
+        Cells(j, 13).NumberFormat = "0.00%"
+        
+        If Cells(j, 12).Value < 0 Then
+            Cells(j, 12).Interior.ColorIndex = 3
+        
+        Else: Cells(j, 12).Interior.ColorIndex = 4
+        
+        End If
+        
+        
+        l = Cells(i + 1, 3).Value
+        
+        
+        j = j + 1
+       
+  
+    End If
+    
+Next i
+    
+End Sub
